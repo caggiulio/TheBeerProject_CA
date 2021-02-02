@@ -96,7 +96,7 @@ extension HomeListBeersViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         interactor?.fetchBeerByIndex(indexPath: indexPath)
-        router?.routeToSomewhere()
+        router?.routeToDetail()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

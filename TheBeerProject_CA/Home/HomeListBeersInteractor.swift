@@ -52,6 +52,7 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
     
     if (category != "" || beerName != "") && page == 1 {
         beers?.removeAll()
+        self.isFinished = false
     }
     
     worker = HomeListBeersWorker()

@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol HomeListBeersRoutingLogic
 {
-  func routeToSomewhere()
+  func routeToDetail()
 }
 
 protocol HomeListBeersDataPassing
@@ -29,10 +29,10 @@ class HomeListBeersRouter: NSObject, HomeListBeersRoutingLogic, HomeListBeersDat
   
   // MARK: Routing
   
-  func routeToSomewhere() {
+  func routeToDetail() {
     let destination = BeerDetailViewController()
     var destinationDS = destination.router?.dataStore
-    passDataToSomewhere(source: self.dataStore!, destination: &destination.router!.dataStore!)
+    passDataToSomewhere(source: self.dataStore!, destination: &destinationDS!)
     navigateToDetail(source: self.viewController!, destination: destination)
   }
 
@@ -53,7 +53,8 @@ class HomeListBeersRouter: NSObject, HomeListBeersRoutingLogic, HomeListBeersDat
 extension HomeListBeersRouter {
     func navigateToDetail(source: HomeListBeersViewController, destination: BeerDetailViewController) {
         DispatchQueue.main.async {
-            source.navigationController?.pushViewController(destination, animated: true)
+            destination.modalPresentationStyle = .overFullScreen
+            source.present(destination, animated: true, completion: nil)
         }
     }
 }
