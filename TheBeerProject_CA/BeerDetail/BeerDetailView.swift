@@ -9,17 +9,40 @@ import Foundation
 import UIKit
 import Anchorage
 
-extension BeerDetailViewController {
+class BeerDetailView: UIView {
+    // MARK: View
+    var containerView: UIView = UIView(frame: .zero)
+    var infoStackView: UIStackView = UIStackView(frame: .zero)
+    
+    var beerDescr: UILabel = UILabel(frame: .zero)
+    var beerTitle: UILabel = UILabel(frame: .zero)
+    var beerSubtitle: UILabel = UILabel(frame: .zero)
+    var beerImage: UIImageView = UIImageView(frame: .zero)
+    var transparentView: UIView = UIView(frame: .zero)
+    var closeButton: UIButton = UIButton(frame: .zero)
+    
+    var closeButtonDidTap: (() -> Void)?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureUI()
+        configureConstraints()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) isn't supported")
+    }
+    
     func configureUI() {
-        self.view.backgroundColor = UIColor(white: 0, alpha: 0.8)
-        self.view.addSubview(transparentView)
-        self.view.addSubview(containerView)
-        self.view.addSubview(beerDescr)
-        self.view.addSubview(beerTitle)
-        self.view.addSubview(beerSubtitle)
-        self.view.addSubview(beerImage)
-        self.view.addSubview(infoStackView)
-        self.view.addSubview(closeButton)
+        backgroundColor = UIColor(white: 0, alpha: 0.8)
+        addSubview(transparentView)
+        addSubview(containerView)
+        addSubview(beerDescr)
+        addSubview(beerTitle)
+        addSubview(beerSubtitle)
+        addSubview(beerImage)
+        addSubview(infoStackView)
+        addSubview(closeButton)
         
         transparentView.backgroundColor = UIColor(white: 0, alpha: 0.65)
         containerView.backgroundColor = UIColor(named: "AppMainColor")
@@ -36,13 +59,13 @@ extension BeerDetailViewController {
         closeButton.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
     }
     
-    func setConstraints() {
+    func configureConstraints() {
         //TRANSPARENTVIEW
         
-        transparentView.bottomAnchor == self.view.bottomAnchor
-        transparentView.topAnchor == self.view.topAnchor
-        transparentView.leadingAnchor == self.view.leadingAnchor
-        transparentView.trailingAnchor == self.view.trailingAnchor
+        transparentView.bottomAnchor == bottomAnchor
+        transparentView.topAnchor == topAnchor
+        transparentView.leadingAnchor == leadingAnchor
+        transparentView.trailingAnchor == trailingAnchor
         
         //CLOSE BUTTON
         closeButton.topAnchor == transparentView.topAnchor + 50
@@ -82,14 +105,14 @@ extension BeerDetailViewController {
         beerSubtitle.heightAnchor == 30
     }
     
-    @IBAction func closeAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     func updateView(beer: Beer?) {
         beerImage.sd_setImage(with: URL(string: (beer?.image_url)!))
         beerTitle.text = beer?.name
         beerSubtitle.text = beer?.tagline
         beerDescr.text = beer?.description
+    }
+    
+    @objc func closeAction(_ sender: Any) {
+        closeButtonDidTap?()
     }
 }

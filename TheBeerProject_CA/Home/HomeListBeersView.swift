@@ -8,102 +8,64 @@
 import UIKit
 import Anchorage
 
-extension HomeListBeersViewController {
-
+class HomeListBeer: UIView {
+    // MARK: - UI properties
+    var beerCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+    let search = UISearchController(searchResultsController: nil)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureUI()
+        configureConstraints()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) isn't supported")
+    }
+    
     func configureUI() {
-        self.title = "Beer Box"
+        addSubview(beerCollectionView)
         
-        self.view.addSubview(beerTableView)
-        beerTableView.backgroundColor = UIColor(named: "AppMainColor")
+        beerCollectionView.backgroundColor = UIColor(named: "AppMainColor")
         
-        beerTableView.register(BeerTableViewCell.self, forCellReuseIdentifier: "beerTableViewCell")
+        func makeLayout() -> UICollectionViewLayout {
+                let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+                    if section == 0 {
+                        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(45)))
+                        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+                        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100),  heightDimension: .absolute(45))
+                        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+                        let section = NSCollectionLayoutSection(group: group)
+                        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 12, bottom: 0, trailing: 12)
+                        section.orthogonalScrollingBehavior = .continuous
+                        //HEADER
+                        let header = NSCollectionLayoutBoundarySupplementaryItem(
+                        layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150)),
+                                        elementKind: UICollectionView.elementKindSectionHeader,
+                                        alignment: .top)
+                                    
+                        section.boundarySupplementaryItems = [header]
+                        return section
+                    } else {
+                        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                        item.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+                        let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(230)), subitem: item, count: 1)
+                        let section = NSCollectionLayoutSection(group: group)
+                        section.contentInsets = NSDirectionalEdgeInsets(top: 16.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+                        return section
+                        
+                    }
+                }
+                return layout
+            }
         
-        beerTableView.delegate = self
-        beerTableView.dataSource = self
-        
-        beerTableView.rowHeight = UITableView.automaticDimension
-        beerTableView.estimatedRowHeight = 248
-        
-        if #available(iOS 13.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            appearance.backgroundColor = UIColor(named: "AppMainColor")
-
-            navigationItem.standardAppearance = appearance
-            navigationItem.scrollEdgeAppearance = appearance
-        } else {
-            
-        }
+        beerCollectionView.setCollectionViewLayout(makeLayout(), animated: false)
     }
     
-    func setConstraints() {        
-        beerTableView.topAnchor == self.view.topAnchor
-        beerTableView.bottomAnchor == self.view.bottomAnchor
-        beerTableView.leftAnchor == self.view.leftAnchor
-        beerTableView.trailingAnchor == self.view.trailingAnchor
-    }
-    
-    func setHeaderViewPopular() {
-        header = UIView.init(frame: CGRect.init(x: 0, y: 0, width: view.frame.width, height: 230))
-        let childViewController = HeaderSectionViewController()
-        childViewController.headerDataProvider = self.headerDataProvider
-        childViewController.delegate = self
-        childViewController.view.frame = header!.frame
-        addChild(childViewController)
-        header!.addSubview(childViewController.view)
-        didMove(toParent: self)
-        
-        beerTableView.reloadData()
-    }
-    
-    func setSearchBar() {
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.navigationItem.searchController = search
-        search.searchBar.delegate = self
-        search.searchBar.barStyle = .default
-        search.searchBar.barTintColor = UIColor.white
-        search.searchBar.tintColor = UIColor.white
-        search.searchBar.setTextColorAndTextFont(color: .white, font: UIFont.systemFont(ofSize: 12))
-    }
-
-}
-
-extension HomeListBeersViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeListBeersDataProvider?.beers?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "beerTableViewCell") as! BeerTableViewCell
-        if let beer = homeListBeersDataProvider?.beers?[indexPath.row] {
-            cell.updateUI(beer: beer)
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 248
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 230
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.fetchBeerByIndex(indexPath: indexPath)
-        router?.routeToDetail()
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = ((homeListBeersDataProvider?.beers?.count ?? 0) - 1)
-        if((indexPath.row == lastElement)) && ((homeListBeersDataProvider?.beers?.count ?? 0) > 2) {
-            let request = HomeListBeers.Something.Request(page: (interactor?.page ?? 0) + 1, beerName: interactor?.beerName, category: interactor?.category)
-            interactor?.fetchListBeer(request: request)
-        }
+    func configureConstraints() {
+        beerCollectionView.topAnchor == self.topAnchor
+        beerCollectionView.bottomAnchor == self.bottomAnchor
+        beerCollectionView.leftAnchor == self.leftAnchor
+        beerCollectionView.trailingAnchor == self.trailingAnchor
     }
 }

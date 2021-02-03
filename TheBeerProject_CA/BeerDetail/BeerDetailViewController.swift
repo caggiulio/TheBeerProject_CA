@@ -21,17 +21,11 @@ class BeerDetailViewController: UIViewController, BeerDetailDisplayLogic
 {
   var interactor: BeerDetailBusinessLogic?
   var router: (NSObjectProtocol & BeerDetailRoutingLogic & BeerDetailDataPassing)?
-
-    // MARK: View
-    var containerView: UIView = UIView(frame: .zero)
-    var infoStackView: UIStackView = UIStackView(frame: .zero)
     
-    var beerDescr: UILabel = UILabel(frame: .zero)
-    var beerTitle: UILabel = UILabel(frame: .zero)
-    var beerSubtitle: UILabel = UILabel(frame: .zero)
-    var beerImage: UIImageView = UIImageView(frame: .zero)
-    var transparentView: UIView = UIView(frame: .zero)
-    var closeButton: UIButton = UIButton(frame: .zero)
+    var _view: BeerDetailView? {
+        guard let view = view as? BeerDetailView else { preconditionFailure("Unable to cast view to LoginView")}
+        return view
+    }
     
   // MARK: Object lifecycle
   
@@ -46,6 +40,10 @@ class BeerDetailViewController: UIViewController, BeerDetailDisplayLogic
     super.init(coder: aDecoder)
     setup()
   }
+    
+    override func loadView() {
+        view = BeerDetailView()
+    }
   
   // MARK: Setup
   
@@ -80,9 +78,10 @@ class BeerDetailViewController: UIViewController, BeerDetailDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    configureUI()
-    setConstraints()
     fetchBeerDetail()
+    _view?.closeButtonDidTap = {
+        self.dismiss(animated: true, completion: nil)
+    }
   }
   
   // MARK: Do something
@@ -94,6 +93,6 @@ class BeerDetailViewController: UIViewController, BeerDetailDisplayLogic
   }
   
   func displaySomething(viewModel: BeerDetail.Something.ViewModel) {
-    self.updateView(beer: viewModel.beer)
+    _view?.updateView(beer: viewModel.beer)
   }
 }

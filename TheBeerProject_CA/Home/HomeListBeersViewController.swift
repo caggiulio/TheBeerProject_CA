@@ -24,7 +24,6 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
   var router: (NSObjectProtocol & HomeListBeersRoutingLogic & HomeListBeersDataPassing)?
     
   // MARK: View
-    var beerTableView: UITableView = UITableView(frame: .zero, style: .grouped)
     var header: UIView?
     let search = UISearchController(searchResultsController: nil)
     
@@ -45,6 +44,12 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
     super.init(coder: aDecoder)
     setup()
   }
+    
+    // MARK: - UI properties
+    var _view: HomeListBeer? {
+        guard let view = view as? HomeListBeer else { preconditionFailure("Unable to cast view to LoginView")}
+        return view
+    }
   
   // MARK: Setup
   
@@ -74,6 +79,10 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
       }
     }
   }
+    
+    override func loadView() {
+        view = HomeListBeer()
+    }
   
   // MARK: View lifecycle
   
@@ -82,9 +91,41 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
     fetchList()
     fetchCategories()
     configureUI()
-    setConstraints()
     setSearchBar()
   }
+    
+    func configureUI() {
+        self.title = "Beer Box"
+        
+        // Collection beer list
+        _view?.beerCollectionView.register(BeerCollectionViewCell.self, forCellWithReuseIdentifier: "beerTableViewCell")
+        _view?.beerCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "categoryCollectionViewCell")
+        _view?.beerCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "beerListHeader")
+        _view?.beerCollectionView.delegate = self
+        _view?.beerCollectionView.dataSource = self
+        
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.backgroundColor = UIColor(named: "AppMainColor")
+
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+        } else {
+            
+        }
+    }
+    
+    func setSearchBar() {
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController = search
+        search.searchBar.delegate = self
+        search.searchBar.barStyle = .default
+        search.searchBar.barTintColor = UIColor.white
+        search.searchBar.tintColor = UIColor.white
+        search.searchBar.setTextColorAndTextFont(color: .white, font: UIFont.systemFont(ofSize: 12))
+    }
   
   // MARK: Do something
     
@@ -101,20 +142,13 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
   func displayBeersList(viewModel: HomeListBeers.Something.ViewModel) {
     if let beers = viewModel.beers {
         self.homeListBeersDataProvider?.beers = beers
-        self.beerTableView.reloadData()
+        _view?.beerCollectionView.reloadSections(IndexSet(integer: 1))
     }
   }
     
     func displayCategories(viewModel: HomeListBeers.Categories.ViewModel) {
         self.headerDataProvider = HeaderDataProvider(categories: viewModel.categories)
-        self.setHeaderViewPopular()
-    }
-}
-
-extension HomeListBeersViewController: HeaderSectionViewControllerDelegate {
-    func passCategry(category: String) {
-        let request = HomeListBeers.Something.Request(page: 1, beerName: "", category: category)
-        interactor?.fetchListBeer(request: request)
+        _view?.beerCollectionView.reloadSections(IndexSet(integer: 0))
     }
 }
 
@@ -123,5 +157,69 @@ extension HomeListBeersViewController: UISearchBarDelegate {
         searchBar.setTextColorAndTextFont(color: .white, font: UIFont.systemFont(ofSize: 12))
         let request = HomeListBeers.Something.Request(page: 1, beerName: searchText, category: interactor?.category)
         interactor?.fetchListBeer(request: request)
+    }
+}
+
+extension HomeListBeersViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 1 {
+            return homeListBeersDataProvider?.beers?.count ?? 0
+        } else {
+            return headerDataProvider?.categories?.count ?? 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "beerTableViewCell", for: indexPath) as! BeerCollectionViewCell
+            if let beer = homeListBeersDataProvider?.beers?[indexPath.row] {
+                cell.updateUI(beer: beer)
+            }
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
+            if let category = headerDataProvider?.categories?[indexPath.row] {
+                cell.updateUI(category: category)
+            }
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "beerListHeader", for: indexPath)
+            return headerView
+        default:
+            break
+        }
+        
+        return UICollectionReusableView()
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if let category = headerDataProvider?.categories?[indexPath.item] {
+                let request = HomeListBeers.Something.Request(page: 1, beerName: "", category: category)
+                interactor?.fetchListBeer(request: request)
+            }
+        } else {
+            interactor?.fetchBeerByIndex(indexPath: indexPath)
+            router?.routeToDetail()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let lastElement = ((homeListBeersDataProvider?.beers?.count ?? 0) - 1)
+            if((indexPath.row == lastElement)) && ((homeListBeersDataProvider?.beers?.count ?? 0) > 2) {
+                let request = HomeListBeers.Something.Request(page: (interactor?.page ?? 0) + 1, beerName: interactor?.beerName, category: interactor?.category)
+                interactor?.fetchListBeer(request: request)
+            }
+        }
     }
 }
