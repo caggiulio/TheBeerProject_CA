@@ -39,12 +39,12 @@ class HomeListBeer: UIView {
                         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 12, bottom: 0, trailing: 12)
                         section.orthogonalScrollingBehavior = .continuous
                         //HEADER
-                        let header = NSCollectionLayoutBoundarySupplementaryItem(
+                        /*let header = NSCollectionLayoutBoundarySupplementaryItem(
                         layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150)),
                                         elementKind: UICollectionView.elementKindSectionHeader,
                                         alignment: .top)
                                     
-                        section.boundarySupplementaryItems = [header]
+                        section.boundarySupplementaryItems = [header]*/
                         return section
                     } else {
                         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))

@@ -42,6 +42,8 @@
 		4DB0190525C9680C00B13666 /* BeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0190425C9680C00B13666 /* BeerDetailView.swift */; };
 		4DB01A4C25CABD0900B13666 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A4B25CABD0900B13666 /* HeaderView.swift */; };
 		4DB01A5125CAC19A00B13666 /* OffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A5025CAC19A00B13666 /* OffersView.swift */; };
+		4DB01A6725CAEF2000B13666 /* DiffableDataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A6625CAEF2000B13666 /* DiffableDataSourceProvider.swift */; };
+		4DB01A7025CAFF1E00B13666 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A6F25CAFF1E00B13666 /* HomeSection.swift */; };
 		4DB255BF25C8583500736E4D /* HeaderDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB255BE25C8583500736E4D /* HeaderDataProvider.swift */; };
 		4DB255C425C8631100736E4D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB255C325C8631100736E4D /* Utils.swift */; };
 		4DE68A9125C9611900C74A48 /* BeerDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE68A8B25C9611900C74A48 /* BeerDetailPresenter.swift */; };
@@ -111,6 +113,8 @@
 		4DB0190425C9680C00B13666 /* BeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailView.swift; sourceTree = "<group>"; };
 		4DB01A4B25CABD0900B13666 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		4DB01A5025CAC19A00B13666 /* OffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersView.swift; sourceTree = "<group>"; };
+		4DB01A6625CAEF2000B13666 /* DiffableDataSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSourceProvider.swift; sourceTree = "<group>"; };
+		4DB01A6F25CAFF1E00B13666 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
 		4DB255BE25C8583500736E4D /* HeaderDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDataProvider.swift; sourceTree = "<group>"; };
 		4DB255C325C8631100736E4D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4DE68A8B25C9611900C74A48 /* BeerDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailPresenter.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				4D31240025C83C4A0021DF81 /* Models */,
 				4D3123D925C83A850021DF81 /* Home */,
 				4DE68A9A25C9612000C74A48 /* BeerDetail */,
+				4DB01A6B25CAEF5200B13666 /* Helpers */,
 			);
 			path = TheBeerProject_CA;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				4D3123F025C83C420021DF81 /* Method.swift */,
 				4D3123E525C83C420021DF81 /* Temp.swift */,
 				4D3123EC25C83C420021DF81 /* Volume.swift */,
+				4DB01A6F25CAFF1E00B13666 /* HomeSection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +266,14 @@
 				4DB01A5025CAC19A00B13666 /* OffersView.swift */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		4DB01A6B25CAEF5200B13666 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4DB01A6625CAEF2000B13666 /* DiffableDataSourceProvider.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		4DE68A9A25C9612000C74A48 /* BeerDetail */ = {
@@ -545,6 +559,7 @@
 				4DB255C425C8631100736E4D /* Utils.swift in Sources */,
 				4D3123D225C83A7F0021DF81 /* HomeListBeersRouter.swift in Sources */,
 				4D31239225C839D80021DF81 /* ViewController.swift in Sources */,
+				4DB01A7025CAFF1E00B13666 /* HomeSection.swift in Sources */,
 				4DB01A5125CAC19A00B13666 /* OffersView.swift in Sources */,
 				4D3123D425C83A7F0021DF81 /* HomeListBeersViewController.swift in Sources */,
 				4DE68A9125C9611900C74A48 /* BeerDetailPresenter.swift in Sources */,
@@ -553,6 +568,7 @@
 				4DE68A9425C9611900C74A48 /* BeerDetailModels.swift in Sources */,
 				4D3123F525C83C430021DF81 /* Beer.swift in Sources */,
 				4D3123F425C83C430021DF81 /* Boil_volume.swift in Sources */,
+				4DB01A6725CAEF2000B13666 /* DiffableDataSourceProvider.swift in Sources */,
 				4D3123F725C83C430021DF81 /* Beers.swift in Sources */,
 				4D3123F225C83C430021DF81 /* Mash_temp.swift in Sources */,
 				4DB255BF25C8583500736E4D /* HeaderDataProvider.swift in Sources */,

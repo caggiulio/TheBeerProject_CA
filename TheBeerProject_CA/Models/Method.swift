@@ -2,6 +2,11 @@
 
 import Foundation
 struct Method : Codable {
+    
+    static func == (lhs: Method, rhs: Method) -> Bool {
+        return lhs.twist == rhs.twist
+    }
+    
 	let twist : String?
 	let mash_temp : [Mash_temp]?
 	let fermentation : Fermentation?

@@ -1,28 +1,29 @@
 
 
 import Foundation
-struct Beer : Codable {
-	let tagline : String?
-	let name : String?
-	let target_og : Double?
-	let ebc : Double?
-	let description : String?
-	let ingredients : Ingredients?
-	let contributed_by : String?
-	let boil_volume : Boil_volume?
-	let attenuation_level : Double?
-	let ibu : Double?
-	let food_pairing : [String]?
-	let target_fg : Double?
-	let first_brewed : String?
-	let abv : Double?
-	let image_url : String?
-	let brewers_tips : String?
-	let id : Double?
-	let volume : Volume?
-	let method : Method?
-	let ph : Double?
-	let srm : Double?
+struct Beer : Codable, Hashable {
+    
+    var tagline : String? = nil
+    var name : String? = nil
+    var target_og : Double? = nil
+    var ebc : Double? = nil
+    var description : String? = nil
+    var ingredients : Ingredients? = nil
+    var contributed_by : String? = nil
+    var boil_volume : Boil_volume? = nil
+    var attenuation_level : Double? = nil
+    var ibu : Double? = nil
+    var food_pairing : [String]? = nil
+    var target_fg : Double? = nil
+    var first_brewed : String? = nil
+    var abv : Double? = nil
+    var image_url : String? = nil
+    var brewers_tips : String? = nil
+    var id : Double? = nil
+    var volume : Volume? = nil
+    var method : Method? = nil
+    var ph : Double? = nil
+    var srm : Double? = nil 
 
 	enum CodingKeys: String, CodingKey {
 
@@ -73,5 +74,16 @@ struct Beer : Codable {
 		ph = try values.decodeIfPresent(Double.self, forKey: .ph)
 		srm = try values.decodeIfPresent(Double.self, forKey: .srm)
 	}
+    
+    init() {
+        
+    }
 
+    static func == (lhs: Beer, rhs: Beer) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
 }

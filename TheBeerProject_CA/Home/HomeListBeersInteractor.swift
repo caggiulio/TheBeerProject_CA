@@ -75,11 +75,13 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
   }
     
     func fetchCategories(request: HomeListBeers.Categories.Request) {
-        worker = HomeListBeersWorker()
-        worker?.fetchCategories(completion: { (categories) in
-            let response = HomeListBeers.Categories.Response(categories: categories)
-            self.presenter?.presentCategories(response: response)
-        })
+        if category == "" {
+            worker = HomeListBeersWorker()
+            worker?.fetchCategories(completion: { (categories) in
+                let response = HomeListBeers.Categories.Response(categories: categories)
+                self.presenter?.presentCategories(response: response)
+            })
+        }
     }
     
     func fetchBeerByIndex(indexPath: IndexPath) {

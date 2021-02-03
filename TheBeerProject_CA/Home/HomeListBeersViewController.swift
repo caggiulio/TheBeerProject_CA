@@ -14,7 +14,7 @@ import UIKit
 
 protocol HomeListBeersDisplayLogic: class
 {
-  func displayBeersList(viewModel: HomeListBeers.Something.ViewModel)
+    func displayBeersList(viewModel: HomeListBeers.Something.ViewModel)
     func displayCategories(viewModel: HomeListBeers.Categories.ViewModel)
 }
 
@@ -29,7 +29,6 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
     
   // MARK: - Business properties
     var homeListBeersDataProvider: HomeListBeersDataProvider?
-    var headerDataProvider: HeaderDataProvider?
     
   // MARK: Object lifecycle
   
@@ -65,7 +64,6 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
     presenter.viewController = viewController
     router.viewController = viewController
     router.dataStore = interactor
-    homeListBeersDataProvider = HomeListBeersDataProvider()
   }
   
   // MARK: Routing
@@ -88,21 +86,21 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    homeListBeersDataProvider = HomeListBeersDataProvider(collectionView: _view!.beerCollectionView)
     fetchList()
-    fetchCategories()
     configureUI()
     setSearchBar()
+    fetchCategories()
   }
     
     func configureUI() {
         self.title = "Beer Box"
         
         // Collection beer list
-        _view?.beerCollectionView.register(BeerCollectionViewCell.self, forCellWithReuseIdentifier: "beerTableViewCell")
         _view?.beerCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "categoryCollectionViewCell")
-        _view?.beerCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "beerListHeader")
+        _view?.beerCollectionView.register(BeerCollectionViewCell.self, forCellWithReuseIdentifier: "beerTableViewCell")
+        //_view?.beerCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "beerListHeader")
         _view?.beerCollectionView.delegate = self
-        _view?.beerCollectionView.dataSource = self
         
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
@@ -141,14 +139,15 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
   
   func displayBeersList(viewModel: HomeListBeers.Something.ViewModel) {
     if let beers = viewModel.beers {
-        self.homeListBeersDataProvider?.beers = beers
-        _view?.beerCollectionView.reloadSections(IndexSet(integer: 1))
+        homeListBeersDataProvider?.beersDisplayed = beers
+        homeListBeersDataProvider?.applySnapshot(beers: homeListBeersDataProvider?.beersDisplayed, categories: homeListBeersDataProvider?.categories)
     }
   }
     
     func displayCategories(viewModel: HomeListBeers.Categories.ViewModel) {
-        self.headerDataProvider = HeaderDataProvider(categories: viewModel.categories)
-        _view?.beerCollectionView.reloadSections(IndexSet(integer: 0))
+        let categories = viewModel.categories
+        homeListBeersDataProvider?.categories = categories
+        homeListBeersDataProvider?.applySnapshot(beers: homeListBeersDataProvider?.beersDisplayed, categories: categories)
     }
 }
 
@@ -160,32 +159,9 @@ extension HomeListBeersViewController: UISearchBarDelegate {
     }
 }
 
-extension HomeListBeersViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 1 {
-            return homeListBeersDataProvider?.beers?.count ?? 0
-        } else {
-            return headerDataProvider?.categories?.count ?? 0
-        }
-    }
+extension HomeListBeersViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "beerTableViewCell", for: indexPath) as! BeerCollectionViewCell
-            if let beer = homeListBeersDataProvider?.beers?[indexPath.row] {
-                cell.updateUI(beer: beer)
-            }
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
-            if let category = headerDataProvider?.categories?[indexPath.row] {
-                cell.updateUI(category: category)
-            }
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    /*func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "beerListHeader", for: indexPath)
@@ -195,15 +171,11 @@ extension HomeListBeersViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         return UICollectionReusableView()
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
+    }*/
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if let category = headerDataProvider?.categories?[indexPath.item] {
+            if let category = homeListBeersDataProvider?.categories[indexPath.item] {
                 let request = HomeListBeers.Something.Request(page: 1, beerName: "", category: category)
                 interactor?.fetchListBeer(request: request)
             }
@@ -215,8 +187,8 @@ extension HomeListBeersViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let lastElement = ((homeListBeersDataProvider?.beers?.count ?? 0) - 1)
-            if((indexPath.row == lastElement)) && ((homeListBeersDataProvider?.beers?.count ?? 0) > 2) {
+            let lastElement = ((homeListBeersDataProvider?.beersDisplayed.count ?? 0) - 1)
+            if((indexPath.row == lastElement)) && ((homeListBeersDataProvider?.beersDisplayed.count ?? 0) > 2) {
                 let request = HomeListBeers.Something.Request(page: (interactor?.page ?? 0) + 1, beerName: interactor?.beerName, category: interactor?.category)
                 interactor?.fetchListBeer(request: request)
             }
