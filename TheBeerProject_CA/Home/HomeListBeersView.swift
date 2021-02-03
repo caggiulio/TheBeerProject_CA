@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Anchorage
 
 extension HomeListBeersViewController {
 
@@ -36,12 +37,11 @@ extension HomeListBeersViewController {
         }
     }
     
-    func setConstraints() {
-        beerTableView.translatesAutoresizingMaskIntoConstraints = false
-        beerTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        beerTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        beerTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        beerTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+    func setConstraints() {        
+        beerTableView.topAnchor == self.view.topAnchor
+        beerTableView.bottomAnchor == self.view.bottomAnchor
+        beerTableView.leftAnchor == self.view.leftAnchor
+        beerTableView.trailingAnchor == self.view.trailingAnchor
     }
     
     func setHeaderViewPopular() {

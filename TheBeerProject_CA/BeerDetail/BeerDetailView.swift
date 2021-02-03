@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Anchorage
 
 extension BeerDetailViewController {
     func configureUI() {
@@ -36,39 +37,34 @@ extension BeerDetailViewController {
     }
     
     func setConstraints() {
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        beerImage.translatesAutoresizingMaskIntoConstraints = false
-        infoStackView.translatesAutoresizingMaskIntoConstraints = false
-        transparentView.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        
         //TRANSPARENTVIEW
-        transparentView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        transparentView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        transparentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        transparentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        transparentView.bottomAnchor == self.view.bottomAnchor
+        transparentView.topAnchor == self.view.topAnchor
+        transparentView.leadingAnchor == self.view.leadingAnchor
+        transparentView.trailingAnchor == self.view.trailingAnchor
         
         //CLOSE BUTTON
-        closeButton.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 50).isActive = true
-        closeButton.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -15).isActive = true
+        closeButton.topAnchor == transparentView.topAnchor + 50
+        closeButton.trailingAnchor == transparentView.trailingAnchor - 20
         
         //CONTAINER VIEW
-        containerView.bottomAnchor.constraint(equalTo: self.transparentView.bottomAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: self.transparentView.leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: self.transparentView.trailingAnchor).isActive = true
-        containerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 300).isActive = true
+        containerView.bottomAnchor == transparentView.bottomAnchor
+        containerView.leadingAnchor == transparentView.leadingAnchor
+        containerView.trailingAnchor == transparentView.trailingAnchor
+        containerView.heightAnchor == 300
         
         //IMAGE VIEW
-        beerImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 15).isActive = true
-        beerImage.heightAnchor.constraint(equalToConstant: 230).isActive = true
-        beerImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15).isActive = true
-        beerImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        beerImage.topAnchor == containerView.topAnchor + 15
+        beerImage.heightAnchor == 230
+        beerImage.leadingAnchor == containerView.leadingAnchor + 15
+        beerImage.widthAnchor == 150
         
         //STACKVIEW
-        infoStackView.topAnchor.constraint(equalTo: beerImage.topAnchor).isActive = true
-        infoStackView.heightAnchor.constraint(equalTo: beerImage.heightAnchor).isActive = true
-        infoStackView.leadingAnchor.constraint(equalTo: beerImage.trailingAnchor, constant: 10).isActive = true
-        infoStackView.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -10).isActive = true
+        infoStackView.topAnchor == beerImage.topAnchor
+        infoStackView.heightAnchor == beerImage.heightAnchor
+        infoStackView.leadingAnchor == beerImage.trailingAnchor + 10
+        infoStackView.trailingAnchor == containerView.trailingAnchor - 10
         infoStackView.axis = .vertical
         infoStackView.alignment = .fill
         infoStackView.distribution = .fillProportionally
@@ -82,8 +78,8 @@ extension BeerDetailViewController {
         infoStackView.addArrangedSubview(beerSubtitle)
         infoStackView.addArrangedSubview(beerDescr)
         
-        beerTitle.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        beerSubtitle.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        beerTitle.heightAnchor == 30
+        beerSubtitle.heightAnchor == 30
     }
     
     @IBAction func closeAction(_ sender: Any) {

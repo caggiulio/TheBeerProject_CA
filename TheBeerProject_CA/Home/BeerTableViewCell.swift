@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 import SDWebImage
 
 class BeerTableViewCell: UITableViewCell {
@@ -51,24 +52,19 @@ class BeerTableViewCell: UITableViewCell {
     }
     
     func setConstraints() {
-        beerSubtitle.translatesAutoresizingMaskIntoConstraints = false
-        beerDescr.translatesAutoresizingMaskIntoConstraints = false
-        beerTitle.translatesAutoresizingMaskIntoConstraints = false
-        beerImage.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         //IMAGE
-        beerImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20).isActive = true
-        beerImage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -20).isActive = true
-        beerImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15).isActive = true
-        beerImage.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        
+        beerImage.topAnchor == self.contentView.topAnchor + 20
+        beerImage.bottomAnchor == self.contentView.bottomAnchor - 20
+        beerImage.leadingAnchor == self.contentView.leadingAnchor + 15
+        beerImage.widthAnchor == 140
         beerImage.contentMode = .scaleAspectFit
         
         //STACKVIEW WITH INFO
-        stackView.topAnchor.constraint(equalTo: beerImage.topAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalTo: beerImage.heightAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: beerImage.trailingAnchor, constant: 10).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
+        stackView.topAnchor == beerImage.topAnchor
+        stackView.heightAnchor == beerImage.heightAnchor
+        stackView.leadingAnchor == beerImage.trailingAnchor + 10
+        stackView.trailingAnchor == self.contentView.trailingAnchor - 10
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillProportionally
@@ -81,8 +77,8 @@ class BeerTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(beerSubtitle)
         stackView.addArrangedSubview(beerDescr)
         
-        beerTitle.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        beerSubtitle.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        beerTitle.heightAnchor == 30
+        beerSubtitle.heightAnchor == 30
     }
     
     func updateUI(beer: Beer) {
