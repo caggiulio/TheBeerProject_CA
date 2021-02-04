@@ -24,7 +24,7 @@ enum HomeListBeers
         
         var beerName: String? = ""
         
-        var category: String? = ""
+        var category: Category? = Category(category: "", shouldSelect: false)
     }
     struct Response
     {
@@ -40,14 +40,20 @@ enum HomeListBeers
     {
       struct Request
       {
+        var index: Int
+        var category: Category
       }
+        
+        struct NormalRequest {
+            
+        }
       struct Response
       {
-          var categories: [String]
+          var categories: [Category]
       }
       struct ViewModel
       {
-        var categories: [String]
+        var categories: [Category]
       }
     }
 }

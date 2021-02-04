@@ -19,11 +19,11 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
     
     struct ItemModel: Hashable {
         let beer: Beer?
-        let category: String?
+        var category: Category?
     }
     
     var beersDisplayed: [Beer] = [Beer]()
-    var categories: [String] = [String]()
+    var categories: [Category] = [Category]()
     
     // MARK: - UI properties
     
@@ -58,20 +58,20 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
     
     // MARK: - Internal methods
     
-    func applySnapshot(beers: [Beer]?, categories: [String]?) {
+    func applySnapshot(beers: [Beer]?, categories: [Category]?) {
         var snapshot = Snapshot<SectionValue, ItemModel>()
 
-        let section = Section<SectionValue>(value: .beers)
+        let beerSection = Section<SectionValue>(value: .beers)
         let catSection = Section<SectionValue>(value: .categories)
-        snapshot.appendSections([catSection, section])
+        snapshot.appendSections([catSection, beerSection])
         
         if beers != nil {
             var beerItems = [Item<SectionValue, ItemModel>]()
-            for beer in beers! {
-                let item = Item(section: section, model: ItemModel(beer: beer, category: nil))
+            for beer in (beers!).enumerated() {
+                let item = Item(section: beerSection, model: ItemModel(beer: beer.element, category: nil))
                 beerItems.append(item)
             }
-            snapshot.appendItems(beerItems, toSection: section)
+            snapshot.appendItems(beerItems, toSection: beerSection)
             dataSource.apply(snapshot, animatingDifferences: true)
         }
         
@@ -84,5 +84,21 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
             snapshot.appendItems(catItems, toSection: catSection)
             dataSource.apply(snapshot, animatingDifferences: false)
         }
+        
+        getSupplementaryView(dataSource: dataSource)
+    }
+    
+    func getSupplementaryView(dataSource: DataSource<SectionValue, ItemModel>) -> UICollectionReusableView {
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "beerListHeader", for: indexPath)
+                return headerView
+            default:
+                break
+            }
+            return UICollectionReusableView()
+        }
+        return UICollectionReusableView()
     }
 }

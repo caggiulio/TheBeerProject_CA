@@ -74,7 +74,7 @@ public struct Item<SectionValue: Hashable & RawRepresentable, Model: Hashable>: 
     let section: Section<SectionValue>
     
     /// The Hashable model needed to populate the collection view
-    let model: Model
+    var model: Model
 
     // MARK: - Hashable methods
 

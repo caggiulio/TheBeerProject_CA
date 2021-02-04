@@ -11,6 +11,17 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     var containerCategoryCell: UIView = UIView(frame: .zero)
     var categoryName: UILabel = UILabel(frame: .zero)
+    
+    // Property
+    var shouldToSelect: Bool = false {
+        didSet {
+            if shouldToSelect {
+                containerCategoryCell.backgroundColor = UIColor.init(named: "Gold")
+            } else {
+                containerCategoryCell.backgroundColor = .darkGray
+            }
+        }
+    }
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,17 +64,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         categoryName.trailingAnchor.constraint(equalTo: containerCategoryCell.trailingAnchor).isActive = true
     }
     
-    override var isSelected: Bool {
-        didSet {
-            if isSelected {
-                containerCategoryCell.backgroundColor = UIColor.init(named: "Gold")
-            } else {
-                containerCategoryCell.backgroundColor = .darkGray
-            }
-        }
-    }
-    
-    func updateUI(category: String) {
-        self.categoryName.text = category
+    func updateUI(category: Category) {
+        self.categoryName.text = category.category
+        self.shouldToSelect = category.shouldSelect
     }
 }

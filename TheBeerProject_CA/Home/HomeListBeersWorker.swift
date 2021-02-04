@@ -55,7 +55,7 @@ class HomeListBeersWorker {
         }
     }
     
-    func fetchCategories(completion: @escaping ([String]) -> ()) {
-        completion(["All", "Pilsner", "Lager", "Ale", "Amber", "Dark", "Brown", "Cream", "Red", "Golden", "Fruit", "Honey"])
+    func fetchCategories(completion: @escaping ([Category]) -> ()) {
+        completion([Category(category: "All", shouldSelect: true), Category(category: "Pilsner", shouldSelect: false), Category(category: "Lager", shouldSelect: false), Category(category: "Ale", shouldSelect: false), Category(category: "Amber", shouldSelect: false), Category(category: "Dark", shouldSelect: false), Category(category: "Brown", shouldSelect: false), Category(category: "Cream", shouldSelect: false), Category(category: "Red", shouldSelect: false), Category(category: "Golden", shouldSelect: false), Category(category: "Fruit", shouldSelect: false), Category(category: "Honey", shouldSelect: false)])
     }
 }

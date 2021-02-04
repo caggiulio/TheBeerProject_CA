@@ -14,17 +14,19 @@ import UIKit
 
 protocol HomeListBeersBusinessLogic {
     func fetchListBeer(request: HomeListBeers.Something.Request)
-    func fetchCategories(request: HomeListBeers.Categories.Request)
+    func fetchCategories(request: HomeListBeers.Categories.NormalRequest)
     func fetchBeerByIndex(indexPath: IndexPath)
+    func refreshCategories(request: HomeListBeers.Categories.Request)
     
     var page: Int { get set }
     var beerName: String { get set }
-    var category: String { get set }
+    var category: Category { get set }
 }
 
 protocol HomeListBeersDataStore {
   var beers: [Beer]? { get set }
     var beerToDetail: Beer? { get set }
+    var categories: [Category]? { get set }
 }
 
 class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStore {
@@ -33,10 +35,11 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
     
     var beerName: String = ""
     
-    var category: String = ""
+    var category: Category = Category(category: "", shouldSelect: false)
     
     var beers: [Beer]? = nil
     var beerToDetail: Beer? = nil
+    var categories: [Category]? = nil
     
     private var isFinished: Bool = false
     
@@ -48,15 +51,15 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
   func fetchListBeer(request: HomeListBeers.Something.Request) {
     self.page = request.page ?? 1
     self.beerName = request.beerName ?? beerName
-    self.category = request.category ?? ""
+    self.category = request.category ?? Category(category: "", shouldSelect: false)
     
-    if (category != "" || beerName != "") && page == 1 {
+    if (category.category != "" || beerName != "") && page == 1 {
         beers?.removeAll()
         self.isFinished = false
     }
     
     worker = HomeListBeersWorker()
-    worker?.callAPIBeers(page: self.page, beerName: self.beerName, category: self.category, completion: { (beers) in
+    worker?.callAPIBeers(page: self.page, beerName: self.beerName, category: self.category.category ?? "", completion: { (beers) in
         if self.beers == nil {
             self.beers = beers?.beers
         } else {
@@ -74,19 +77,38 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
     })
   }
     
-    func fetchCategories(request: HomeListBeers.Categories.Request) {
-        if category == "" {
+    func fetchBeerByIndex(indexPath: IndexPath) {
+        if let beers = beers {
+            self.beerToDetail = beers[indexPath.row]
+        }
+    }
+    
+    func fetchCategories(request: HomeListBeers.Categories.NormalRequest) {
+        if category.category == "" {
             worker = HomeListBeersWorker()
             worker?.fetchCategories(completion: { (categories) in
+                self.categories = categories
                 let response = HomeListBeers.Categories.Response(categories: categories)
                 self.presenter?.presentCategories(response: response)
             })
         }
     }
     
-    func fetchBeerByIndex(indexPath: IndexPath) {
-        if let beers = beers {
-            self.beerToDetail = beers[indexPath.row]
+    func refreshCategories(request: HomeListBeers.Categories.Request) {
+        if let _ = categories {
+            for cat in categories!.enumerated() {
+                if cat.offset == request.index {
+                    categories?[request.index] = request.category
+                } else {
+                    let catNotSelected = Category(category: cat.element.category, shouldSelect: false)
+                    categories?[cat.offset] = catNotSelected
+                }
+            }
+        }
+        categories?[request.index] = request.category
+        if let _ = categories {
+            let response = HomeListBeers.Categories.Response(categories: categories!)
+            self.presenter?.presentCategories(response: response)
         }
     }
 }
