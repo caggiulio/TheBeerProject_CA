@@ -63,7 +63,12 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
 
         let beerSection = Section<SectionValue>(value: .beers)
         let catSection = Section<SectionValue>(value: .categories)
-        snapshot.appendSections([catSection, beerSection])
+        if categories != nil {
+            snapshot.appendSections([catSection])
+        }
+        if beers != nil {
+            snapshot.appendSections([beerSection])
+        }
         
         if beers != nil {
             var beerItems = [Item<SectionValue, ItemModel>]()
@@ -72,7 +77,6 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
                 beerItems.append(item)
             }
             snapshot.appendItems(beerItems, toSection: beerSection)
-            dataSource.apply(snapshot, animatingDifferences: true)
         }
         
         var catItems = [Item<SectionValue, ItemModel>]()
@@ -82,10 +86,11 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
                 catItems.append(catItem)
             }
             snapshot.appendItems(catItems, toSection: catSection)
-            dataSource.apply(snapshot, animatingDifferences: false)
         }
         
         getSupplementaryView(dataSource: dataSource)
+        dataSource.apply(snapshot, animatingDifferences: false)
+
     }
     
     func getSupplementaryView(dataSource: DataSource<SectionValue, ItemModel>) -> UICollectionReusableView {
