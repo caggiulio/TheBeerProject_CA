@@ -93,6 +93,11 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
     fetchCategories()
   }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //router?.presentTutorial()
+    }
+    
     func configureUI() {
         self.title = "Beer Box"
         

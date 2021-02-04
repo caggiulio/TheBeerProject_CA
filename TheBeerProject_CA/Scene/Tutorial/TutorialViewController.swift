@@ -28,6 +28,7 @@ class TutorialViewController: UIViewController {
 
     // MARK: - Business properties
     var tutorialConfigurator: TutorialProtocol?
+    var tutorialDataProvider: TutorialDataProvider?
 
     // MARK: - Object lifecycle
     
@@ -58,10 +59,15 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        _view?.tutorialCollectionView.delegate = self
-        _view?.tutorialCollectionView.dataSource = self
-        
         _view?.tutorialCollectionView.register(PageTutorialCollectionViewCell.self, forCellWithReuseIdentifier: "pageTutorialCollectionViewCell")
+        tutorialDataProvider = TutorialDataProvider(collectionView: _view!.tutorialCollectionView)
+        
+        if let pages = tutorialConfigurator?.pageConfigurators {
+            let pagesToPass = pages.map { (prot) -> TutorialPage in
+                return TutorialPage(tutorialPageConf: prot as! TutorialPageConfigurator)
+            }
+            tutorialDataProvider?.applySnapshot(tutorialPages: pagesToPass)
+        }
     }
     
     // MARK: - Setup methods
@@ -99,20 +105,4 @@ extension TutorialViewController: TutorialDisplayLogic {
 
     }
 
-}
-
-extension TutorialViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tutorialConfigurator?.pageConfigurators?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageTutorialCollectionViewCell", for: indexPath) as! PageTutorialCollectionViewCell
-        if let pageConfigurator = self.tutorialConfigurator?.pageConfigurators?[indexPath.item] {
-            cell.setConfigurator(tutorialPageConfiguration: pageConfigurator)
-        }
-        return cell
-    }
-    
-    
 }

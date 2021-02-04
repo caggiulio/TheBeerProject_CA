@@ -10,7 +10,6 @@
 		3C53B46F4C1D5378BB57F491 /* Pods_TheBeerProject_CA_TheBeerProject_CAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC47562E69AB907FF1001039 /* Pods_TheBeerProject_CA_TheBeerProject_CAUITests.framework */; };
 		4D31238E25C839D80021DF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31238D25C839D80021DF81 /* AppDelegate.swift */; };
 		4D31239025C839D80021DF81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31238F25C839D80021DF81 /* SceneDelegate.swift */; };
-		4D31239225C839D80021DF81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31239125C839D80021DF81 /* ViewController.swift */; };
 		4D31239525C839D80021DF81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D31239325C839D80021DF81 /* Main.storyboard */; };
 		4D31239725C839D80021DF81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D31239625C839D80021DF81 /* Assets.xcassets */; };
 		4D31239A25C839D80021DF81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D31239825C839D80021DF81 /* LaunchScreen.storyboard */; };
@@ -49,6 +48,8 @@
 		4D8B2B4425CC4FC200FA343F /* TutorialModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2B3925CC4FC200FA343F /* TutorialModels.swift */; };
 		4D8B2B4525CC4FC200FA343F /* TutorialPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2B3A25CC4FC200FA343F /* TutorialPresenter.swift */; };
 		4D8B2B4625CC4FC200FA343F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2B3B25CC4FC200FA343F /* TutorialView.swift */; };
+		4D8B2B6325CC520C00FA343F /* TutorialDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2B6225CC520C00FA343F /* TutorialDataProvider.swift */; };
+		4D8B2B6825CC529400FA343F /* TutorialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2B6725CC529400FA343F /* TutorialModel.swift */; };
 		4DB0190525C9680C00B13666 /* BeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0190425C9680C00B13666 /* BeerDetailView.swift */; };
 		4DB01A4C25CABD0900B13666 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A4B25CABD0900B13666 /* HeaderView.swift */; };
 		4DB01A5125CAC19A00B13666 /* OffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A5025CAC19A00B13666 /* OffersView.swift */; };
@@ -89,7 +90,6 @@
 		4D31238A25C839D80021DF81 /* TheBeerProject_CA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBeerProject_CA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D31238D25C839D80021DF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D31238F25C839D80021DF81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4D31239125C839D80021DF81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4D31239425C839D80021DF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D31239625C839D80021DF81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D31239925C839D80021DF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -133,6 +133,8 @@
 		4D8B2B3925CC4FC200FA343F /* TutorialModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialModels.swift; sourceTree = "<group>"; };
 		4D8B2B3A25CC4FC200FA343F /* TutorialPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPresenter.swift; sourceTree = "<group>"; };
 		4D8B2B3B25CC4FC200FA343F /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		4D8B2B6225CC520C00FA343F /* TutorialDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDataProvider.swift; sourceTree = "<group>"; };
+		4D8B2B6725CC529400FA343F /* TutorialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialModel.swift; sourceTree = "<group>"; };
 		4DB0190425C9680C00B13666 /* BeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailView.swift; sourceTree = "<group>"; };
 		4DB01A4B25CABD0900B13666 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		4DB01A5025CAC19A00B13666 /* OffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersView.swift; sourceTree = "<group>"; };
@@ -218,18 +220,14 @@
 		4D31238C25C839D80021DF81 /* TheBeerProject_CA */ = {
 			isa = PBXGroup;
 			children = (
-				4DB255C325C8631100736E4D /* Utils.swift */,
 				4D31238D25C839D80021DF81 /* AppDelegate.swift */,
 				4D31238F25C839D80021DF81 /* SceneDelegate.swift */,
-				4D31239125C839D80021DF81 /* ViewController.swift */,
 				4D31239325C839D80021DF81 /* Main.storyboard */,
 				4D31239625C839D80021DF81 /* Assets.xcassets */,
 				4D31239825C839D80021DF81 /* LaunchScreen.storyboard */,
 				4D31239B25C839D80021DF81 /* Info.plist */,
-				4D8B2B2F25CC4FC200FA343F /* Tutorial */,
+				4D8B2B5B25CC516800FA343F /* Scene */,
 				4D31240025C83C4A0021DF81 /* Models */,
-				4D3123D925C83A850021DF81 /* Home */,
-				4DE68A9A25C9612000C74A48 /* BeerDetail */,
 				4DB01A6B25CAEF5200B13666 /* Helpers */,
 			);
 			path = TheBeerProject_CA;
@@ -287,6 +285,7 @@
 				4D3123EC25C83C420021DF81 /* Volume.swift */,
 				4DB01A6F25CAFF1E00B13666 /* HomeSection.swift */,
 				4DB01A7425CB3AD300B13666 /* Category.swift */,
+				4D8B2B6725CC529400FA343F /* TutorialModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,9 +310,10 @@
 				4D8B2B3A25CC4FC200FA343F /* TutorialPresenter.swift */,
 				4D8B2B3B25CC4FC200FA343F /* TutorialView.swift */,
 				4D8B2B3025CC4FC200FA343F /* TutorialInteractor.swift */,
+				4D8B2B6225CC520C00FA343F /* TutorialDataProvider.swift */,
 			);
 			name = Tutorial;
-			path = TheBeerProject_CA/Tutorial;
+			path = TheBeerProject_CA/Scene/Tutorial;
 			sourceTree = SOURCE_ROOT;
 		};
 		4D8B2B3125CC4FC200FA343F /* TutorialPage */ = {
@@ -328,9 +328,20 @@
 			path = TutorialPage;
 			sourceTree = "<group>";
 		};
+		4D8B2B5B25CC516800FA343F /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				4D8B2B2F25CC4FC200FA343F /* Tutorial */,
+				4D3123D925C83A850021DF81 /* Home */,
+				4DE68A9A25C9612000C74A48 /* BeerDetail */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		4DB01A6B25CAEF5200B13666 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4DB255C325C8631100736E4D /* Utils.swift */,
 				4DB01A6625CAEF2000B13666 /* DiffableDataSourceProvider.swift */,
 			);
 			path = Helpers;
@@ -604,13 +615,14 @@
 				4D3123D125C83A7F0021DF81 /* HomeListBeersWorker.swift in Sources */,
 				4D31241D25C852D30021DF81 /* CategoryCollectionViewCell.swift in Sources */,
 				4D31240A25C84B0C0021DF81 /* HomeListBeersDataProvider.swift in Sources */,
+				4D8B2B6825CC529400FA343F /* TutorialModel.swift in Sources */,
 				4DE68A9525C9611900C74A48 /* BeerDetailViewController.swift in Sources */,
 				4DE68A9325C9611900C74A48 /* BeerDetailRouter.swift in Sources */,
+				4D8B2B6325CC520C00FA343F /* TutorialDataProvider.swift in Sources */,
 				4D8B2B3E25CC4FC200FA343F /* TutorialProtocol.swift in Sources */,
 				4D8B2B4625CC4FC200FA343F /* TutorialView.swift in Sources */,
 				4DB255C425C8631100736E4D /* Utils.swift in Sources */,
 				4D3123D225C83A7F0021DF81 /* HomeListBeersRouter.swift in Sources */,
-				4D31239225C839D80021DF81 /* ViewController.swift in Sources */,
 				4D8B2B4525CC4FC200FA343F /* TutorialPresenter.swift in Sources */,
 				4DB01A7025CAFF1E00B13666 /* HomeSection.swift in Sources */,
 				4DB01A5125CAC19A00B13666 /* OffersView.swift in Sources */,
