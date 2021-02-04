@@ -133,7 +133,7 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
   }
     
     func fetchCategories() {
-        let request = HomeListBeers.Categories.NormalRequest()
+        let request = HomeListBeers.Categories.Request()
         interactor?.fetchCategories(request: request)
     }
   
@@ -164,8 +164,7 @@ extension HomeListBeersViewController: UICollectionViewDelegate {
         if indexPath.section == 0 {
             
             if let category = homeListBeersDataProvider?.categories[indexPath.item] {
-                let cat = Category(category: category.category, shouldSelect: true)
-                let categoryRequest = HomeListBeers.Categories.Request(index: indexPath.item, category: cat)
+                let categoryRequest = HomeListBeers.Categories.Request(index: indexPath.item)
                 interactor?.refreshCategories(request: categoryRequest)
                 
                 let request = HomeListBeers.Something.Request(page: 1, beerName: "", category: category)

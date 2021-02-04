@@ -40,13 +40,8 @@ enum HomeListBeers
     {
       struct Request
       {
-        var index: Int
-        var category: Category
+        var index: Int = 0
       }
-        
-        struct NormalRequest {
-            
-        }
       struct Response
       {
           var categories: [Category]

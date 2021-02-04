@@ -14,7 +14,7 @@ import UIKit
 
 protocol HomeListBeersBusinessLogic {
     func fetchListBeer(request: HomeListBeers.Something.Request)
-    func fetchCategories(request: HomeListBeers.Categories.NormalRequest)
+    func fetchCategories(request: HomeListBeers.Categories.Request)
     func fetchBeerByIndex(indexPath: IndexPath)
     func refreshCategories(request: HomeListBeers.Categories.Request)
     
@@ -83,7 +83,7 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
         }
     }
     
-    func fetchCategories(request: HomeListBeers.Categories.NormalRequest) {
+    func fetchCategories(request: HomeListBeers.Categories.Request) {
         if category.category == "" {
             worker = HomeListBeersWorker()
             worker?.fetchCategories(completion: { (categories) in
@@ -98,15 +98,13 @@ class HomeListBeersInteractor: HomeListBeersBusinessLogic, HomeListBeersDataStor
         if let _ = categories {
             for cat in categories!.enumerated() {
                 if cat.offset == request.index {
-                    categories?[request.index] = request.category
+                    let selectedCat = Category(category: cat.element.category, shouldSelect: true)
+                    categories?[request.index] = selectedCat
                 } else {
                     let catNotSelected = Category(category: cat.element.category, shouldSelect: false)
                     categories?[cat.offset] = catNotSelected
                 }
             }
-        }
-        categories?[request.index] = request.category
-        if let _ = categories {
             let response = HomeListBeers.Categories.Response(categories: categories!)
             self.presenter?.presentCategories(response: response)
         }
