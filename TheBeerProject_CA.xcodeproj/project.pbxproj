@@ -9,13 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D4773CD25C40E69F435EBA3 /* Pods_TheBeerProject_CA_TheBeerProject_CAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F886C2C2829E6F0804CAFC82 /* Pods_TheBeerProject_CA_TheBeerProject_CAUITests.framework */; };
 		2A0E63ED21CE0C3712677CE6 /* Pods_TheBeerProject_CATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B2B7AD0050924ECB130664 /* Pods_TheBeerProject_CATests.framework */; };
-		4D271BAF25CC2CA700457C19 /* TutorialInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BA725CC2CA700457C19 /* TutorialInteractor.swift */; };
-		4D271BB025CC2CA700457C19 /* PageTutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BA925CC2CA700457C19 /* PageTutorialCollectionViewCell.swift */; };
-		4D271BB125CC2CA700457C19 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BAA25CC2CA700457C19 /* TutorialViewController.swift */; };
-		4D271BB225CC2CA700457C19 /* TutorialRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BAB25CC2CA700457C19 /* TutorialRouter.swift */; };
-		4D271BB325CC2CA700457C19 /* TutorialModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BAC25CC2CA700457C19 /* TutorialModels.swift */; };
-		4D271BB425CC2CA700457C19 /* TutorialPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BAD25CC2CA700457C19 /* TutorialPresenter.swift */; };
-		4D271BB525CC2CA700457C19 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D271BAE25CC2CA700457C19 /* TutorialView.swift */; };
 		4D31238E25C839D80021DF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31238D25C839D80021DF81 /* AppDelegate.swift */; };
 		4D31239025C839D80021DF81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31238F25C839D80021DF81 /* SceneDelegate.swift */; };
 		4D31239225C839D80021DF81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31239125C839D80021DF81 /* ViewController.swift */; };
@@ -46,10 +39,17 @@
 		4D31240A25C84B0C0021DF81 /* HomeListBeersDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31240925C84B0B0021DF81 /* HomeListBeersDataProvider.swift */; };
 		4D31241725C84C4F0021DF81 /* HomeListBeersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31241625C84C4F0021DF81 /* HomeListBeersView.swift */; };
 		4D31241D25C852D30021DF81 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31241B25C852D30021DF81 /* CategoryCollectionViewCell.swift */; };
-		4D8B13E125CC306800FA343F /* TutorialPageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B13E025CC306800FA343F /* TutorialPageProtocol.swift */; };
-		4D8B13E625CC326200FA343F /* TutorialProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B13E525CC326200FA343F /* TutorialProtocol.swift */; };
-		4D8B13EB25CC35C100FA343F /* TutorialConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B13EA25CC35C100FA343F /* TutorialConfigurator.swift */; };
-		4D8B13F025CC375200FA343F /* TutorialPageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B13EF25CC375200FA343F /* TutorialPageConfigurator.swift */; };
+		4D8B2AF525CC4E2900FA343F /* TutorialInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AE925CC4E2900FA343F /* TutorialInteractor.swift */; };
+		4D8B2AF625CC4E2900FA343F /* TutorialPageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AEB25CC4E2900FA343F /* TutorialPageProtocol.swift */; };
+		4D8B2AF725CC4E2900FA343F /* TutorialProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AEC25CC4E2900FA343F /* TutorialProtocol.swift */; };
+		4D8B2AF825CC4E2900FA343F /* TutorialConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AED25CC4E2900FA343F /* TutorialConfigurator.swift */; };
+		4D8B2AF925CC4E2900FA343F /* TutorialPageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AEE25CC4E2900FA343F /* TutorialPageConfigurator.swift */; };
+		4D8B2AFA25CC4E2900FA343F /* PageTutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AEF25CC4E2900FA343F /* PageTutorialCollectionViewCell.swift */; };
+		4D8B2AFB25CC4E2900FA343F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AF025CC4E2900FA343F /* TutorialViewController.swift */; };
+		4D8B2AFC25CC4E2900FA343F /* TutorialRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AF125CC4E2900FA343F /* TutorialRouter.swift */; };
+		4D8B2AFD25CC4E2900FA343F /* TutorialModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AF225CC4E2900FA343F /* TutorialModels.swift */; };
+		4D8B2AFE25CC4E2900FA343F /* TutorialPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AF325CC4E2900FA343F /* TutorialPresenter.swift */; };
+		4D8B2AFF25CC4E2900FA343F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B2AF425CC4E2900FA343F /* TutorialView.swift */; };
 		4DB0190525C9680C00B13666 /* BeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB0190425C9680C00B13666 /* BeerDetailView.swift */; };
 		4DB01A4C25CABD0900B13666 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A4B25CABD0900B13666 /* HeaderView.swift */; };
 		4DB01A5125CAC19A00B13666 /* OffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A5025CAC19A00B13666 /* OffersView.swift */; };
@@ -85,13 +85,6 @@
 
 /* Begin PBXFileReference section */
 		14F3F4D859B71C541770829A /* Pods-TheBeerProject_CA-TheBeerProject_CAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBeerProject_CA-TheBeerProject_CAUITests.debug.xcconfig"; path = "Target Support Files/Pods-TheBeerProject_CA-TheBeerProject_CAUITests/Pods-TheBeerProject_CA-TheBeerProject_CAUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4D271BA725CC2CA700457C19 /* TutorialInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialInteractor.swift; sourceTree = "<group>"; };
-		4D271BA925CC2CA700457C19 /* PageTutorialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTutorialCollectionViewCell.swift; sourceTree = "<group>"; };
-		4D271BAA25CC2CA700457C19 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		4D271BAB25CC2CA700457C19 /* TutorialRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialRouter.swift; sourceTree = "<group>"; };
-		4D271BAC25CC2CA700457C19 /* TutorialModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialModels.swift; sourceTree = "<group>"; };
-		4D271BAD25CC2CA700457C19 /* TutorialPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPresenter.swift; sourceTree = "<group>"; };
-		4D271BAE25CC2CA700457C19 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		4D31238A25C839D80021DF81 /* TheBeerProject_CA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBeerProject_CA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D31238D25C839D80021DF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D31238F25C839D80021DF81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,10 +121,17 @@
 		4D31240925C84B0B0021DF81 /* HomeListBeersDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListBeersDataProvider.swift; sourceTree = "<group>"; };
 		4D31241625C84C4F0021DF81 /* HomeListBeersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListBeersView.swift; sourceTree = "<group>"; };
 		4D31241B25C852D30021DF81 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		4D8B13E025CC306800FA343F /* TutorialPageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageProtocol.swift; sourceTree = "<group>"; };
-		4D8B13E525CC326200FA343F /* TutorialProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialProtocol.swift; sourceTree = "<group>"; };
-		4D8B13EA25CC35C100FA343F /* TutorialConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialConfigurator.swift; sourceTree = "<group>"; };
-		4D8B13EF25CC375200FA343F /* TutorialPageConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageConfigurator.swift; sourceTree = "<group>"; };
+		4D8B2AE925CC4E2900FA343F /* TutorialInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialInteractor.swift; sourceTree = "<group>"; };
+		4D8B2AEB25CC4E2900FA343F /* TutorialPageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageProtocol.swift; sourceTree = "<group>"; };
+		4D8B2AEC25CC4E2900FA343F /* TutorialProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialProtocol.swift; sourceTree = "<group>"; };
+		4D8B2AED25CC4E2900FA343F /* TutorialConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialConfigurator.swift; sourceTree = "<group>"; };
+		4D8B2AEE25CC4E2900FA343F /* TutorialPageConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageConfigurator.swift; sourceTree = "<group>"; };
+		4D8B2AEF25CC4E2900FA343F /* PageTutorialCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTutorialCollectionViewCell.swift; sourceTree = "<group>"; };
+		4D8B2AF025CC4E2900FA343F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		4D8B2AF125CC4E2900FA343F /* TutorialRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialRouter.swift; sourceTree = "<group>"; };
+		4D8B2AF225CC4E2900FA343F /* TutorialModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialModels.swift; sourceTree = "<group>"; };
+		4D8B2AF325CC4E2900FA343F /* TutorialPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPresenter.swift; sourceTree = "<group>"; };
+		4D8B2AF425CC4E2900FA343F /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		4DB0190425C9680C00B13666 /* BeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailView.swift; sourceTree = "<group>"; };
 		4DB01A4B25CABD0900B13666 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		4DB01A5025CAC19A00B13666 /* OffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersView.swift; sourceTree = "<group>"; };
@@ -183,33 +183,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D271BA625CC2CA700457C19 /* Tutorial */ = {
-			isa = PBXGroup;
-			children = (
-				4D271BA725CC2CA700457C19 /* TutorialInteractor.swift */,
-				4D271BAA25CC2CA700457C19 /* TutorialViewController.swift */,
-				4D271BAB25CC2CA700457C19 /* TutorialRouter.swift */,
-				4D271BAC25CC2CA700457C19 /* TutorialModels.swift */,
-				4D271BAD25CC2CA700457C19 /* TutorialPresenter.swift */,
-				4D271BAE25CC2CA700457C19 /* TutorialView.swift */,
-				4D271BA825CC2CA700457C19 /* TutorialPage */,
-			);
-			name = Tutorial;
-			path = ../../../Desktop/Tutorial;
-			sourceTree = "<group>";
-		};
-		4D271BA825CC2CA700457C19 /* TutorialPage */ = {
-			isa = PBXGroup;
-			children = (
-				4D271BA925CC2CA700457C19 /* PageTutorialCollectionViewCell.swift */,
-				4D8B13E025CC306800FA343F /* TutorialPageProtocol.swift */,
-				4D8B13E525CC326200FA343F /* TutorialProtocol.swift */,
-				4D8B13EA25CC35C100FA343F /* TutorialConfigurator.swift */,
-				4D8B13EF25CC375200FA343F /* TutorialPageConfigurator.swift */,
-			);
-			path = TutorialPage;
-			sourceTree = "<group>";
-		};
 		4D31238125C839D80021DF81 = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +216,7 @@
 				4D31239625C839D80021DF81 /* Assets.xcassets */,
 				4D31239825C839D80021DF81 /* LaunchScreen.storyboard */,
 				4D31239B25C839D80021DF81 /* Info.plist */,
-				4D271BA625CC2CA700457C19 /* Tutorial */,
+				4D8B2AE825CC4E2900FA343F /* Tutorial */,
 				4D31240025C83C4A0021DF81 /* Models */,
 				4D3123D925C83A850021DF81 /* Home */,
 				4DE68A9A25C9612000C74A48 /* BeerDetail */,
@@ -316,6 +289,32 @@
 				4DB01A5025CAC19A00B13666 /* OffersView.swift */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		4D8B2AE825CC4E2900FA343F /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				4D8B2AE925CC4E2900FA343F /* TutorialInteractor.swift */,
+				4D8B2AF025CC4E2900FA343F /* TutorialViewController.swift */,
+				4D8B2AF125CC4E2900FA343F /* TutorialRouter.swift */,
+				4D8B2AF225CC4E2900FA343F /* TutorialModels.swift */,
+				4D8B2AF325CC4E2900FA343F /* TutorialPresenter.swift */,
+				4D8B2AF425CC4E2900FA343F /* TutorialView.swift */,
+				4D8B2AEA25CC4E2900FA343F /* TutorialPage */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		4D8B2AEA25CC4E2900FA343F /* TutorialPage */ = {
+			isa = PBXGroup;
+			children = (
+				4D8B2AEB25CC4E2900FA343F /* TutorialPageProtocol.swift */,
+				4D8B2AEC25CC4E2900FA343F /* TutorialProtocol.swift */,
+				4D8B2AED25CC4E2900FA343F /* TutorialConfigurator.swift */,
+				4D8B2AEE25CC4E2900FA343F /* TutorialPageConfigurator.swift */,
+				4D8B2AEF25CC4E2900FA343F /* PageTutorialCollectionViewCell.swift */,
+			);
+			path = TutorialPage;
 			sourceTree = "<group>";
 		};
 		4DB01A6B25CAEF5200B13666 /* Helpers */ = {
@@ -601,37 +600,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D8B2AFF25CC4E2900FA343F /* TutorialView.swift in Sources */,
 				4D3123D125C83A7F0021DF81 /* HomeListBeersWorker.swift in Sources */,
 				4D31241D25C852D30021DF81 /* CategoryCollectionViewCell.swift in Sources */,
+				4D8B2AF825CC4E2900FA343F /* TutorialConfigurator.swift in Sources */,
 				4D31240A25C84B0C0021DF81 /* HomeListBeersDataProvider.swift in Sources */,
 				4DE68A9525C9611900C74A48 /* BeerDetailViewController.swift in Sources */,
 				4DE68A9325C9611900C74A48 /* BeerDetailRouter.swift in Sources */,
 				4DB255C425C8631100736E4D /* Utils.swift in Sources */,
 				4D3123D225C83A7F0021DF81 /* HomeListBeersRouter.swift in Sources */,
 				4D31239225C839D80021DF81 /* ViewController.swift in Sources */,
+				4D8B2AF625CC4E2900FA343F /* TutorialPageProtocol.swift in Sources */,
 				4DB01A7025CAFF1E00B13666 /* HomeSection.swift in Sources */,
 				4DB01A5125CAC19A00B13666 /* OffersView.swift in Sources */,
-				4D271BB425CC2CA700457C19 /* TutorialPresenter.swift in Sources */,
 				4D3123D425C83A7F0021DF81 /* HomeListBeersViewController.swift in Sources */,
 				4DE68A9125C9611900C74A48 /* BeerDetailPresenter.swift in Sources */,
 				4D3123F325C83C430021DF81 /* Ingredients.swift in Sources */,
-				4D8B13E125CC306800FA343F /* TutorialPageProtocol.swift in Sources */,
+				4D8B2AFA25CC4E2900FA343F /* PageTutorialCollectionViewCell.swift in Sources */,
 				4D3123FC25C83C430021DF81 /* Method.swift in Sources */,
-				4D271BB225CC2CA700457C19 /* TutorialRouter.swift in Sources */,
 				4DE68A9425C9611900C74A48 /* BeerDetailModels.swift in Sources */,
 				4D3123F525C83C430021DF81 /* Beer.swift in Sources */,
 				4D3123F425C83C430021DF81 /* Boil_volume.swift in Sources */,
-				4D271BB025CC2CA700457C19 /* PageTutorialCollectionViewCell.swift in Sources */,
 				4DB01A6725CAEF2000B13666 /* DiffableDataSourceProvider.swift in Sources */,
 				4D3123F725C83C430021DF81 /* Beers.swift in Sources */,
 				4D3123F225C83C430021DF81 /* Mash_temp.swift in Sources */,
-				4D271BB325CC2CA700457C19 /* TutorialModels.swift in Sources */,
 				4DE68A9625C9611900C74A48 /* BeerDetailInteractor.swift in Sources */,
-				4D271BAF25CC2CA700457C19 /* TutorialInteractor.swift in Sources */,
+				4D8B2AF525CC4E2900FA343F /* TutorialInteractor.swift in Sources */,
+				4D8B2AF925CC4E2900FA343F /* TutorialPageConfigurator.swift in Sources */,
 				4DB01A4C25CABD0900B13666 /* HeaderView.swift in Sources */,
 				4DB0190525C9680C00B13666 /* BeerDetailView.swift in Sources */,
-				4D271BB125CC2CA700457C19 /* TutorialViewController.swift in Sources */,
 				4DE68A9225C9611900C74A48 /* BeerDetailWorker.swift in Sources */,
+				4D8B2AF725CC4E2900FA343F /* TutorialProtocol.swift in Sources */,
 				4D3123D025C83A7F0021DF81 /* HomeListBeersPresenter.swift in Sources */,
 				4D31238E25C839D80021DF81 /* AppDelegate.swift in Sources */,
 				4D3123FA25C83C430021DF81 /* Hops.swift in Sources */,
@@ -639,16 +638,16 @@
 				4D3123D525C83A7F0021DF81 /* HomeListBeersInteractor.swift in Sources */,
 				4D3123F125C83C430021DF81 /* Temp.swift in Sources */,
 				4D3123D325C83A7F0021DF81 /* HomeListBeersModels.swift in Sources */,
+				4D8B2AFB25CC4E2900FA343F /* TutorialViewController.swift in Sources */,
+				4D8B2AFD25CC4E2900FA343F /* TutorialModels.swift in Sources */,
 				4D31239025C839D80021DF81 /* SceneDelegate.swift in Sources */,
-				4D271BB525CC2CA700457C19 /* TutorialView.swift in Sources */,
 				4D31241725C84C4F0021DF81 /* HomeListBeersView.swift in Sources */,
-				4D8B13F025CC375200FA343F /* TutorialPageConfigurator.swift in Sources */,
-				4D8B13E625CC326200FA343F /* TutorialProtocol.swift in Sources */,
 				4D3123F825C83C430021DF81 /* Volume.swift in Sources */,
 				4DB01A7525CB3AD300B13666 /* Category.swift in Sources */,
-				4D8B13EB25CC35C100FA343F /* TutorialConfigurator.swift in Sources */,
 				4D3123F625C83C430021DF81 /* Fermentation.swift in Sources */,
 				4D3123FB25C83C430021DF81 /* Malt.swift in Sources */,
+				4D8B2AFC25CC4E2900FA343F /* TutorialRouter.swift in Sources */,
+				4D8B2AFE25CC4E2900FA343F /* TutorialPresenter.swift in Sources */,
 				4D31240525C844B00021DF81 /* BeerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
