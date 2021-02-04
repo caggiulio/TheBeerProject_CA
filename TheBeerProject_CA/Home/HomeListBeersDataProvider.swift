@@ -65,32 +65,27 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
         let catSection = Section<SectionValue>(value: .categories)
         if categories != nil {
             snapshot.appendSections([catSection])
-        }
-        if beers != nil {
-            snapshot.appendSections([beerSection])
-        }
-        
-        if beers != nil {
-            var beerItems = [Item<SectionValue, ItemModel>]()
-            for beer in (beers!).enumerated() {
-                let item = Item(section: beerSection, model: ItemModel(beer: beer.element, category: nil))
-                beerItems.append(item)
-            }
-            snapshot.appendItems(beerItems, toSection: beerSection)
-        }
-        
-        var catItems = [Item<SectionValue, ItemModel>]()
-        if categories != nil {
+            
+            var catItems = [Item<SectionValue, ItemModel>]()
             for cat in categories! {
                 let catItem = Item(section: catSection, model: ItemModel(beer: nil, category: cat))
                 catItems.append(catItem)
             }
             snapshot.appendItems(catItems, toSection: catSection)
         }
+        if beers != nil {
+            snapshot.appendSections([beerSection])
+            
+            var beerItems = [Item<SectionValue, ItemModel>]()
+            for beer in (beers!) {
+                let item = Item(section: beerSection, model: ItemModel(beer: beer, category: nil))
+                beerItems.append(item)
+            }
+            snapshot.appendItems(beerItems, toSection: beerSection)
+        }
         
         getSupplementaryView(dataSource: dataSource)
         dataSource.apply(snapshot, animatingDifferences: false)
-
     }
     
     func getSupplementaryView(dataSource: DataSource<SectionValue, ItemModel>) -> UICollectionReusableView {
