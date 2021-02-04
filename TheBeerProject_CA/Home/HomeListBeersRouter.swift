@@ -15,6 +15,7 @@ import UIKit
 @objc protocol HomeListBeersRoutingLogic
 {
   func routeToDetail()
+    func presentTutorial()
 }
 
 protocol HomeListBeersDataPassing
@@ -35,6 +36,11 @@ class HomeListBeersRouter: NSObject, HomeListBeersRoutingLogic, HomeListBeersDat
     passDataToSomewhere(source: self.dataStore!, destination: &destinationDS!)
     navigateToDetail(source: self.viewController!, destination: destination)
   }
+    
+    func presentTutorial() {
+        let tutorial = TutorialViewController(tutorialConfigurator: TutorialConfigurator(pageConfigurators: [TutorialPageConfigurator(backgroundColor: .systemRed, titleText: "TEST1"), TutorialPageConfigurator(backgroundColor: .systemGreen, titleText: "TEST2"), TutorialPageConfigurator(backgroundColor: .systemBlue, titleText: "TEST3"), TutorialPageConfigurator(backgroundColor: .systemGray, titleText: "TEST4")]))
+        presentTutorial(source: self.viewController!, destination: tutorial)
+    }
 
   // MARK: Navigation
   
@@ -52,6 +58,13 @@ class HomeListBeersRouter: NSObject, HomeListBeersRoutingLogic, HomeListBeersDat
 
 extension HomeListBeersRouter {
     func navigateToDetail(source: HomeListBeersViewController, destination: BeerDetailViewController) {
+        DispatchQueue.main.async {
+            destination.modalPresentationStyle = .overFullScreen
+            source.present(destination, animated: true, completion: nil)
+        }
+    }
+    
+    func presentTutorial(source: HomeListBeersViewController, destination: TutorialViewController) {
         DispatchQueue.main.async {
             destination.modalPresentationStyle = .overFullScreen
             source.present(destination, animated: true, completion: nil)
