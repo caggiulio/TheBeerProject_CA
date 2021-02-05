@@ -21,7 +21,7 @@ struct TutorialPage : Hashable, TutorialPageProtocol {
         hasher.combine(id)
     }
     
-    init(tutorialPageConf: TutorialPageConfigurator) {
+    init(tutorialPageConf: TutorialPageProtocol) {
         self.backgroundColor = tutorialPageConf.backgroundColor
         self.titleText = tutorialPageConf.titleText
     }

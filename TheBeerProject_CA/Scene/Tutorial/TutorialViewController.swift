@@ -64,7 +64,7 @@ class TutorialViewController: UIViewController {
         
         if let pages = tutorialConfigurator?.pageConfigurators {
             let pagesToPass = pages.map { (prot) -> TutorialPage in
-                return TutorialPage(tutorialPageConf: prot as! TutorialPageConfigurator)
+                return TutorialPage(tutorialPageConf: prot)
             }
             tutorialDataProvider?.applySnapshot(tutorialPages: pagesToPass)
         }

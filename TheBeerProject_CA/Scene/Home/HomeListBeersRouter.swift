@@ -59,14 +59,13 @@ class HomeListBeersRouter: NSObject, HomeListBeersRoutingLogic, HomeListBeersDat
 extension HomeListBeersRouter {
     func navigateToDetail(source: HomeListBeersViewController, destination: BeerDetailViewController) {
         DispatchQueue.main.async {
-            destination.modalPresentationStyle = .overFullScreen
             source.present(destination, animated: true, completion: nil)
         }
     }
     
     func presentTutorial(source: HomeListBeersViewController, destination: TutorialViewController) {
         DispatchQueue.main.async {
-            destination.modalPresentationStyle = .overFullScreen
+            destination.modalPresentationStyle = .automatic
             source.present(destination, animated: true, completion: nil)
         }
     }

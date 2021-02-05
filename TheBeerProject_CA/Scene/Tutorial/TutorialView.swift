@@ -30,7 +30,6 @@ class TutorialView: UIView {
     // MARK: - Configure methods
     
     private func configureUI() {
-        transparentView.backgroundColor = UIColor(white: 0, alpha: 0.65)
         func makeLayout() -> UICollectionViewLayout {
             let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
                 let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
@@ -50,20 +49,14 @@ class TutorialView: UIView {
         tutorialCollectionView.setCollectionViewLayout(makeLayout(), animated: false)
         tutorialCollectionView.backgroundColor = .clear
         
-        addSubview(transparentView)
-        transparentView.addSubview(tutorialCollectionView)
+        addSubview(tutorialCollectionView)
     }
 
     private func configureConstraints() {
-        transparentView.topAnchor == self.topAnchor
-        transparentView.leadingAnchor == self.leadingAnchor
-        transparentView.trailingAnchor == self.trailingAnchor
-        transparentView.bottomAnchor == self.bottomAnchor
-        
-        tutorialCollectionView.topAnchor == transparentView.topAnchor
-        tutorialCollectionView.leadingAnchor == transparentView.leadingAnchor
-        tutorialCollectionView.trailingAnchor == transparentView.trailingAnchor
-        tutorialCollectionView.bottomAnchor == transparentView.bottomAnchor
+        tutorialCollectionView.topAnchor == self.topAnchor
+        tutorialCollectionView.leadingAnchor == self.leadingAnchor
+        tutorialCollectionView.trailingAnchor == self.trailingAnchor
+        tutorialCollectionView.bottomAnchor == self.bottomAnchor
     }
 
 }

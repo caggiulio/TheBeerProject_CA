@@ -95,7 +95,7 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //router?.presentTutorial()
+        router?.presentTutorial()
     }
     
     func configureUI() {
