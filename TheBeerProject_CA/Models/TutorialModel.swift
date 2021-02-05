@@ -11,6 +11,8 @@ import UIKit
 struct TutorialPage : Hashable, TutorialPageProtocol {
     var backgroundColor: UIColor?
     var titleText: String?
+    var hasNextButton: Bool?
+    
     var id = UUID()
     
     static func == (lhs: TutorialPage, rhs: TutorialPage) -> Bool {
@@ -24,5 +26,6 @@ struct TutorialPage : Hashable, TutorialPageProtocol {
     init(tutorialPageConf: TutorialPageProtocol) {
         self.backgroundColor = tutorialPageConf.backgroundColor
         self.titleText = tutorialPageConf.titleText
+        self.hasNextButton = tutorialPageConf.hasNextButton
     }
 }

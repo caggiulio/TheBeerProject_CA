@@ -11,4 +11,5 @@ import UIKit
 protocol TutorialPageProtocol {
     var backgroundColor: UIColor? {get set}
     var titleText: String? {get set}
+    var hasNextButton: Bool? {get set}
 }

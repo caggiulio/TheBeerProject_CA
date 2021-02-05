@@ -38,7 +38,7 @@ class HomeListBeersRouter: NSObject, HomeListBeersRoutingLogic, HomeListBeersDat
   }
     
     func presentTutorial() {
-        let tutorial = TutorialViewController(tutorialConfigurator: TutorialConfigurator(pageConfigurators: [TutorialPageConfigurator(backgroundColor: .systemRed, titleText: "TEST1"), TutorialPageConfigurator(backgroundColor: .systemGreen, titleText: "TEST2"), TutorialPageConfigurator(backgroundColor: .systemBlue, titleText: "TEST3"), TutorialPageConfigurator(backgroundColor: .systemGray, titleText: "TEST4")]))
+        let tutorial = TutorialViewController(tutorialConfigurator: TutorialConfigurator(pageConfigurators: [TutorialPageConfigurator(backgroundColor: .systemRed, titleText: "TEST1", hasNextButton: true), TutorialPageConfigurator(backgroundColor: .systemGreen, titleText: "TEST2", hasNextButton: true), TutorialPageConfigurator(backgroundColor: .systemBlue, titleText: "TEST3", hasNextButton: true), TutorialPageConfigurator(backgroundColor: .systemGray, titleText: "TEST4", hasNextButton: false)]))
         presentTutorial(source: self.viewController!, destination: tutorial)
     }
 

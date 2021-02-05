@@ -58,9 +58,9 @@ class TutorialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tutorialDataProvider = TutorialDataProvider(collectionView: _view!.tutorialCollectionView)
         configureUI()
         _view?.tutorialCollectionView.register(PageTutorialCollectionViewCell.self, forCellWithReuseIdentifier: "pageTutorialCollectionViewCell")
-        tutorialDataProvider = TutorialDataProvider(collectionView: _view!.tutorialCollectionView)
         
         if let pages = tutorialConfigurator?.pageConfigurators {
             let pagesToPass = pages.map { (prot) -> TutorialPage in
@@ -88,7 +88,10 @@ class TutorialViewController: UIViewController {
     // MARK: - Configure methods
 
     private func configureUI() {
-        
+        tutorialDataProvider?.nextButtonOnTap = { indexPath in
+            let nextIndexPath = IndexPath(item: indexPath.item + 1, section: indexPath.section)
+            self._view?.tutorialCollectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
+        }
     }
     
     // MARK: - User interactions

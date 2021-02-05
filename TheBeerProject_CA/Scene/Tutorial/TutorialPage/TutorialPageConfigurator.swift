@@ -14,8 +14,11 @@ class TutorialPageConfigurator: TutorialPageProtocol {
     
     var titleText: String?
     
-    init(backgroundColor: UIColor, titleText: String) {
+    var hasNextButton: Bool?
+    
+    init(backgroundColor: UIColor, titleText: String, hasNextButton: Bool) {
         self.backgroundColor = backgroundColor
         self.titleText = titleText
+        self.hasNextButton = hasNextButton
     }
 }

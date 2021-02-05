@@ -13,10 +13,18 @@ class PageTutorialCollectionViewCell: UICollectionViewCell {
     var tutorialPageConfiguration: TutorialPageProtocol? {
         didSet {
             configureUI()
+            setConstraints()
         }
     }
     
     var titleLabel: UILabel = UILabel(frame: .zero)
+    var nextButton: UIButton = {
+        var nextButton = UIButton(frame: .zero)
+        nextButton.setTitle("NEXT", for: .normal)
+        return nextButton
+    }()
+    
+    var nextButtonDidTap: (() -> Void)?
             
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +43,16 @@ class PageTutorialCollectionViewCell: UICollectionViewCell {
     
     
     func configureUI() {
+        nextButton.addTarget(self, action: #selector(nextAction), for: .touchUpInside)
+        
         addSubview(titleLabel)
+        
+        if tutorialPageConfiguration?.hasNextButton ?? false {
+            addSubview(nextButton)
+        } else {
+            nextButton.removeFromSuperview()
+        }
+        
         titleLabel.text = tutorialPageConfiguration?.titleText ?? ""
         titleLabel.textAlignment = .center
         self.contentView.backgroundColor = tutorialPageConfiguration?.backgroundColor ?? .clear
@@ -50,5 +67,15 @@ class PageTutorialCollectionViewCell: UICollectionViewCell {
         titleLabel.centerYAnchor == self.centerYAnchor
         titleLabel.heightAnchor == 50
         titleLabel.widthAnchor == self.widthAnchor
+        
+        if tutorialPageConfiguration?.hasNextButton ?? false {
+            nextButton.topAnchor == self.topAnchor + 20
+            nextButton.trailingAnchor == self.trailingAnchor - 20
+            nextButton.heightAnchor == 50
+        }
+    }
+    
+    @objc func nextAction(_ sender: Any) {
+        nextButtonDidTap?()
     }
 }

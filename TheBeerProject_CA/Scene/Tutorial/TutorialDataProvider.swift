@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import UIKit
 
 class TutorialDataProvider: DiffableDataSourceProvider {
@@ -41,10 +39,15 @@ class TutorialDataProvider: DiffableDataSourceProvider {
             let cell: PageTutorialCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageTutorialCollectionViewCell", for: indexPath) as! PageTutorialCollectionViewCell
             if let tutorialPageConf = item.model.tutorialPage {
                 cell.setConfigurator(tutorialPageConfiguration: tutorialPageConf)
+                cell.nextButtonDidTap = { 
+                    self.nextButtonOnTap?(indexPath)
+                }
             }
             return cell
         }
     }
+    
+    var nextButtonOnTap: ((IndexPath) -> Void)?
     
     // MARK: - Internal methods
     
