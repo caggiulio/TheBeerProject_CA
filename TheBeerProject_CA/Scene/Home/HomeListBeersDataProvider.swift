@@ -56,48 +56,77 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
         return UICollectionViewCell()
     }
     
-    // MARK: - Internal methods
-    
-    func applySnapshot(beers: [Beer]?, categories: [Category]?) {
+    /*func applySnapshot(homeEntries: HomeSectionEntry) {
         var snapshot = Snapshot<SectionValue, ItemModel>()
 
         let beerSection = Section<SectionValue>(value: .beers)
         let catSection = Section<SectionValue>(value: .categories)
-        if categories != nil {
-            snapshot.appendSections([catSection])
-            
-            var catItems = [Item<SectionValue, ItemModel>]()
-            for cat in categories! {
-                let catItem = Item(section: catSection, model: ItemModel(beer: nil, category: cat))
-                catItems.append(catItem)
-            }
-            snapshot.appendItems(catItems, toSection: catSection)
+        snapshot.appendSections([catSection, beerSection])
+        
+        let categoriesEntries = homeEntries.categories
+        let beersEntries = homeEntries.beers
+        
+        let catToParse = categoriesEntries ?? self.categories
+        var catItems = [Item<SectionValue, ItemModel>]()
+        for cat in catToParse {
+            let catItem = Item(section: catSection, model: ItemModel(beer: nil, category: cat))
+            catItems.append(catItem)
         }
-        if beers != nil {
-            snapshot.appendSections([beerSection])
-            
-            var beerItems = [Item<SectionValue, ItemModel>]()
-            for beer in (beers!) {
-                let item = Item(section: beerSection, model: ItemModel(beer: beer, category: nil))
-                beerItems.append(item)
-            }
-            snapshot.appendItems(beerItems, toSection: beerSection)
+        snapshot.appendItems(catItems, toSection: catSection)
+        
+        let beersToParse = beersEntries ?? beersDisplayed
+        var beerItems = [Item<SectionValue, ItemModel>]()
+        for beer in beersToParse {
+            let item = Item(section: beerSection, model: ItemModel(beer: beer, category: nil))
+            beerItems.append(item)
+        }
+        snapshot.appendItems(beerItems, toSection: beerSection)
+        
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            self.getSupplementaryView(kind: kind, indexPath: indexPath)
+        }
+        dataSource.apply(snapshot, animatingDifferences: false)
+        
+    }*/
+    
+    // MARK: - Internal methods
+    func applySnapshot(beers: [Beer]? = nil, categories: [Category]? = nil) {
+        var snapshot = Snapshot<SectionValue, ItemModel>()
+
+        let beerSection = Section<SectionValue>(value: .beers)
+        let catSection = Section<SectionValue>(value: .categories)
+        snapshot.appendSections([catSection, beerSection])
+        
+        let catToParse = categories ?? self.categories
+        var catItems = [Item<SectionValue, ItemModel>]()
+        for cat in catToParse {
+            let catItem = Item(section: catSection, model: ItemModel(beer: nil, category: cat))
+            catItems.append(catItem)
+        }
+        snapshot.appendItems(catItems, toSection: catSection)
+        
+        let beersToParse = beers ?? beersDisplayed
+        var beerItems = [Item<SectionValue, ItemModel>]()
+        for beer in beersToParse {
+            let item = Item(section: beerSection, model: ItemModel(beer: beer, category: nil))
+            beerItems.append(item)
         }
         
-        getSupplementaryView(dataSource: dataSource)
+        snapshot.appendItems(beerItems, toSection: beerSection)
+        
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            self.getSupplementaryView(kind: kind, indexPath: indexPath)
+        }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    func getSupplementaryView(dataSource: DataSource<SectionValue, ItemModel>) -> UICollectionReusableView {
-        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
-            switch kind {
-            case UICollectionView.elementKindSectionHeader:
-                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "beerListHeader", for: indexPath)
-                return headerView
-            default:
-                break
-            }
-            return UICollectionReusableView()
+    func getSupplementaryView(kind: String, indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "beerListHeader", for: indexPath)
+            return headerView
+        default:
+            break
         }
         return UICollectionReusableView()
     }

@@ -58,10 +58,9 @@ class TutorialDataProvider: DiffableDataSourceProvider {
         snapshot.appendSections([tutorialPageSection])
         
         var tutorialPagesItem = [Item<SectionValue, ItemModel>]()
-        for tutorial in tutorialPages {
-            let tutItem = Item(section: tutorialPageSection, model: ItemModel(tutorialPage: tutorial))
-            tutorialPagesItem.append(tutItem)
-        }
+        tutorialPagesItem = tutorialPages.map({ (tutorial) -> Item<SectionValue, ItemModel> in
+            return Item(section: tutorialPageSection, model: ItemModel(tutorialPage: tutorial))
+        })
         snapshot.appendItems(tutorialPagesItem, toSection: tutorialPageSection)
         
         dataSource.apply(snapshot, animatingDifferences: false)
