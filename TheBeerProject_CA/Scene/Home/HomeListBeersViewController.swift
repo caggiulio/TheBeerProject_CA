@@ -145,20 +145,18 @@ class HomeListBeersViewController: UIViewController, HomeListBeersDisplayLogic
   func displayBeersList(viewModel: HomeListBeers.Something.ViewModel) {
     if let beers = viewModel.beers {
         homeListBeersDataProvider?.beersDisplayed = beers
-        homeListBeersDataProvider?.applySnapshot(beers: beers)
         
-        //let homeEntries = HomeSectionEntry(beers: beers, categories: nil)
-        //homeListBeersDataProvider?.applySnapshot(homeEntries: homeEntries)
+        let homeEntries = HomeSectionEntry(beers: beers)
+        homeListBeersDataProvider?.applySnapshot(homeEntries: homeEntries)
     }
   }
     
     func displayCategories(viewModel: HomeListBeers.Categories.ViewModel) {
         let categories = viewModel.categories
         homeListBeersDataProvider?.categories = categories
-        homeListBeersDataProvider?.applySnapshot(categories: categories)
         
-        //let homeEntries = HomeSectionEntry(beers: nil, categories: categories)
-        //homeListBeersDataProvider?.applySnapshot(homeEntries: homeEntries)
+        let homeEntries = HomeSectionEntry(categories: categories)
+        homeListBeersDataProvider?.applySnapshot(homeEntries: homeEntries)
     }
 }
 

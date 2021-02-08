@@ -8,8 +8,8 @@
 import Foundation
 
 struct HomeSectionEntry: Hashable {
-    var beers: [Beer]?
-    var categories: [Category]?
+    var beers: [Beer]? = nil
+    var categories: [Category]? = nil
     var id = UUID()
     
     static func == (lhs: HomeSectionEntry, rhs: HomeSectionEntry) -> Bool {

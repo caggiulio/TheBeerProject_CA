@@ -56,7 +56,7 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
         return UICollectionViewCell()
     }
     
-    /*func applySnapshot(homeEntries: HomeSectionEntry) {
+    func applySnapshot(homeEntries: HomeSectionEntry) {
         var snapshot = Snapshot<SectionValue, ItemModel>()
 
         let beerSection = Section<SectionValue>(value: .beers)
@@ -87,38 +87,9 @@ class HomeListBeersDataProvider: DiffableDataSourceProvider {
         }
         dataSource.apply(snapshot, animatingDifferences: false)
         
-    }*/
+    }
     
     // MARK: - Internal methods
-    func applySnapshot(beers: [Beer]? = nil, categories: [Category]? = nil) {
-        var snapshot = Snapshot<SectionValue, ItemModel>()
-
-        let beerSection = Section<SectionValue>(value: .beers)
-        let catSection = Section<SectionValue>(value: .categories)
-        snapshot.appendSections([catSection, beerSection])
-        
-        let catToParse = categories ?? self.categories
-        var catItems = [Item<SectionValue, ItemModel>]()
-        for cat in catToParse {
-            let catItem = Item(section: catSection, model: ItemModel(beer: nil, category: cat))
-            catItems.append(catItem)
-        }
-        snapshot.appendItems(catItems, toSection: catSection)
-        
-        let beersToParse = beers ?? beersDisplayed
-        var beerItems = [Item<SectionValue, ItemModel>]()
-        for beer in beersToParse {
-            let item = Item(section: beerSection, model: ItemModel(beer: beer, category: nil))
-            beerItems.append(item)
-        }
-        
-        snapshot.appendItems(beerItems, toSection: beerSection)
-        
-        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
-            self.getSupplementaryView(kind: kind, indexPath: indexPath)
-        }
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
     
     func getSupplementaryView(kind: String, indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {

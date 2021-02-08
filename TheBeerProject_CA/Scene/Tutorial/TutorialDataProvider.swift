@@ -10,6 +10,9 @@ import UIKit
 
 class TutorialDataProvider: DiffableDataSourceProvider {
     
+    var nextButtonOnTap: ((IndexPath) -> Void)?
+    var segmentedControlOnTap: ((IndexPath, Int) -> Void)?
+    
     enum Sections: String {
         case tutorialPage
     }
@@ -42,12 +45,14 @@ class TutorialDataProvider: DiffableDataSourceProvider {
                 cell.nextButtonDidTap = { 
                     self.nextButtonOnTap?(indexPath)
                 }
+                
+                cell.segmentedControlDidTap = { selectedIndex in
+                    self.segmentedControlOnTap?(indexPath, selectedIndex)
+                }
             }
             return cell
         }
     }
-    
-    var nextButtonOnTap: ((IndexPath) -> Void)?
     
     // MARK: - Internal methods
     

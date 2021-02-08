@@ -112,9 +112,10 @@ class PageTutorialCollectionViewCell: UICollectionViewCell {
         bottomView.bottomAnchor == segmentedControl.bottomAnchor
         bottomView.widthAnchor == (segmentedControl.widthAnchor / Double(segmentedControl.segmentedControl.numberOfSegments))
         bottomView.heightAnchor == 5
-        UIView.animate(withDuration: 0.25) {
-            let finalOrigin = (self.segmentedControl.frame.origin.x + (self.segmentedControl.frame.width / CGFloat(self.segmentedControl.segmentedControl.numberOfSegments))) * CGFloat(self.segmentedControl.segmentedControl.selectedSegmentIndex)
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut) {
+            let finalOrigin = (self.segmentedControl.bounds.width / CGFloat(self.segmentedControl.segmentedControl.numberOfSegments)) * CGFloat(self.segmentedControl.segmentedControl.selectedSegmentIndex)
             self.bottomView.frame.origin.x = finalOrigin
+        } completion: { (finished) in
             
         }
     }
