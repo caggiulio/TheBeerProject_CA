@@ -57,6 +57,7 @@
 		4DB01A7025CAFF1E00B13666 /* HomeSectionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A6F25CAFF1E00B13666 /* HomeSectionEntry.swift */; };
 		4DB01A7525CB3AD300B13666 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB01A7425CB3AD300B13666 /* Category.swift */; };
 		4DB255C425C8631100736E4D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB255C325C8631100736E4D /* Utils.swift */; };
+		4DC4D0B325D00DCA0046D99D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D0B225D00DCA0046D99D /* CustomSegmentedControl.swift */; };
 		4DE68A9125C9611900C74A48 /* BeerDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE68A8B25C9611900C74A48 /* BeerDetailPresenter.swift */; };
 		4DE68A9225C9611900C74A48 /* BeerDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE68A8C25C9611900C74A48 /* BeerDetailWorker.swift */; };
 		4DE68A9325C9611900C74A48 /* BeerDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE68A8D25C9611900C74A48 /* BeerDetailRouter.swift */; };
@@ -142,6 +143,7 @@
 		4DB01A6F25CAFF1E00B13666 /* HomeSectionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionEntry.swift; sourceTree = "<group>"; };
 		4DB01A7425CB3AD300B13666 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4DB255C325C8631100736E4D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4DC4D0B225D00DCA0046D99D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		4DE68A8B25C9611900C74A48 /* BeerDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailPresenter.swift; sourceTree = "<group>"; };
 		4DE68A8C25C9611900C74A48 /* BeerDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailWorker.swift; sourceTree = "<group>"; };
 		4DE68A8D25C9611900C74A48 /* BeerDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailRouter.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				4D8B2B3425CC4FC200FA343F /* TutorialConfigurator.swift */,
 				4D8B2B3525CC4FC200FA343F /* TutorialPageConfigurator.swift */,
 				4D8B2B3625CC4FC200FA343F /* PageTutorialCollectionViewCell.swift */,
+				4DC4D0B225D00DCA0046D99D /* CustomSegmentedControl.swift */,
 			);
 			path = TutorialPage;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				4DB01A6725CAEF2000B13666 /* DiffableDataSourceProvider.swift in Sources */,
 				4D3123F725C83C430021DF81 /* Beers.swift in Sources */,
 				4D3123F225C83C430021DF81 /* Mash_temp.swift in Sources */,
+				4DC4D0B325D00DCA0046D99D /* CustomSegmentedControl.swift in Sources */,
 				4D8B2B4125CC4FC200FA343F /* PageTutorialCollectionViewCell.swift in Sources */,
 				4DE68A9625C9611900C74A48 /* BeerDetailInteractor.swift in Sources */,
 				4D8B2B4325CC4FC200FA343F /* TutorialRouter.swift in Sources */,

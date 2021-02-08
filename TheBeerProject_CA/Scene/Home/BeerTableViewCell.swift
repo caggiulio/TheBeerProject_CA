@@ -82,3 +82,15 @@ class BeerCollectionViewCell: UICollectionViewCell {
         beerDescr.text = beer.description
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct BeerCollectionViewCell_Pr: PreviewProvider {
+    
+    static var previews: some View {
+        BeerCollectionViewCell().makePreview().previewLayout(.fixed(width: 414, height: 230))
+    }
+}
+#endif

@@ -26,3 +26,40 @@ extension Array where Element: Equatable {
             }
       }
 }
+
+
+#if DEBUG
+import SwiftUI
+
+extension UIView {
+    
+    // MARK: - Preview
+    
+    private struct Preview<View: UIView>: UIViewRepresentable {
+        
+        // MARK: - Business logic properties
+        
+        let view: View
+        
+        // MARK: - UIViewRepresentable
+
+        func makeUIView(context: Context) -> View { view }
+        
+        func updateUIView(_ uiView: View, context: Context) { }
+        
+    }
+
+    // MARK: - Internal properties
+    
+    var preview: some View {
+        Preview(view: self).previewDevice("iPhone 12 Pro")
+    }
+
+    // MARK: - Internal methods
+    
+    func makePreview() -> some View {
+        Preview(view: self)
+    }
+    
+}
+#endif

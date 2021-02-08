@@ -92,6 +92,10 @@ class TutorialViewController: UIViewController {
             let nextIndexPath = IndexPath(item: indexPath.item + 1, section: indexPath.section)
             self._view?.tutorialCollectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
         }
+        
+        tutorialDataProvider?.segmentedControlOnTap = { (indexPath, selectedIndex) in
+            print(indexPath, selectedIndex)
+        }
     }
     
     // MARK: - User interactions
